@@ -15,6 +15,40 @@ bot = commands.InteractionBot()
 async def on_ready():
     print(f'{bot.user} has connected to Discord!')
 
+@bot.slash_command(name='help', description='HelpList')
+async def help(ctx):
+    embed = disnake.Embed(
+        title='Help',
+        color=disnake.Color.blue()
+    )
+    embed.add_field(
+        name='/ping',
+        value='Pings the bot',
+        inline=False
+    )
+    embed.add_field(
+        name='/qrcode text',
+        value='Generates a QR Code with a text',
+        inline=False
+    )
+    embed.add_field(
+        name='/qrcode vcard',
+        value='Generates a QR Code with a Contact',
+        inline=False
+    )
+    embed.add_field(
+        name='/kluge_worte',
+        value='Gibt ein random Informatiker Spruch / Weißheit aus',
+        inline=False
+    )
+    embed.add_field(
+        name='/get_source_code',
+        value='Get the source code of the bot',
+        inline=False
+    )
+
+    await ctx.send(embed=embed)
+
 @bot.slash_command(name='ping')
 async def ping(ctx):
     await ctx.send(f'Pong! {round(bot.latency * 1000)}ms')
@@ -64,6 +98,12 @@ async def uuid_(ctx):
 async def kluge_worter(ctx):
     import sprueche
     embed = disnake.Embed(title=f'{random.choice(sprueche.sprueche)}', color=0x00ff00)
+    await ctx.send(embed=embed)
+
+@bot.slash_command(name='get_source_code', description='Get the source code of the bot.')
+async def get_source_code(ctx):
+    embed = disnake.Embed(title='Source Code', color=0x00ff00)
+    embed.add_field(name='GitHub', value='https://github.com/redhead-therealprogrammer/kellerbot', inline=False)
     await ctx.send(embed=embed)
 
 bot.run('TOKEN')
