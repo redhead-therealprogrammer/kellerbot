@@ -66,6 +66,4 @@ async def kluge_worter(ctx):
     embed = disnake.Embed(title=f'{random.choice(sprueche.sprueche)}', color=0x00ff00)
     await ctx.send(embed=embed)
 
-
-
-bot.run('OTc0MDE0MDczOTMzMDMzNDky.GIr-jr.1VjRnuvNoIW5Tdm2UwGUkG42kZWwhzMsm8vUD0')
+bot.run('TOKEN')
